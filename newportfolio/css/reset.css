@@ -1,0 +1,9 @@
+
+*{margin:0; padding:0; box-sizing: border-box;}
+a:link,a:visited{color: #4c4c4c; text-decoration: none;}
+li{list-style-type: none;}
+header,footer,section,div,p,ul,ol,li{display: block;}
+img{width: 100%;}
+a{display:inline-block;}
+.blind{width:1px; height:1px; line-height:1px; position:absolute; left:-9999px; top:-9999px;}
+

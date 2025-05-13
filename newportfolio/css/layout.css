@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@700&display=swap');
+
+body{font-family: 'Noto Sans KR', sans-serif; color:#4f4f4f;}
+#wrap{width: 100%;}
+.inner{max-width: 1280px; margin:0 auto;}
+
+.header_wrap{width: 100%; position: fixed; left:0; top:0; z-index: 999;}
+.header_box{display: flex; justify-content: space-between; align-items: center;}
+h1{width: 50%;}
+.nav{width: 50%;}
+.nav_ul{width: 100%; display: flex; justify-content: space-between; text-transform: uppercase;}
+
+section{height: 100vh; background-color: pink;}
+section:nth-child(2){background-color: #fea7b5;}
+section:nth-child(3){background-color: #ff8b9f;}
+section:nth-child(4){background-color: #fb748b;}
+section:nth-child(5){background-color: #f14461;}
