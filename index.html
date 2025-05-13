@@ -1,12 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/animation.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/main.js"></script>
+
+    <title>My Git</title>
 </head>
+<!-- js -->
+
 <body>
-  <p>Hello, World!</p>
+    <div class="sec_bg bg1"></div>
+    <div class="sec_bg bg2"></div>
+    <div id="wrap">
+        <div class="wrap_inner">
+            <header id="header">
+                <div class="inner">
+                    <div class="headBox">
+                        <h1>2023 YOUNGAE PORTFOLIO</h1>
+                        <nav class="nav">
+                            <ul>
+                                <li><a href="#intro">INTRO</a></li>
+                                <li><a href="#secondPage">work project</a></li>
+                                <li><a href="#3rdPage">clone coding</a></li>
+                                <li><a href="#lastpage">PERSONAL PROJECT</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <div id="fullpage">
+                    <div class="section intro" id="intro">
+                        <h2 class="blind">intro</h2>
+                        <div class="inner">
+                            <div class="welcome_tit">
+                                <span id="txt1"></span>
+                                <span id="txt2"></span>
+                                <svg id="filters">
+                                    <filter id="threshold">
+                                        <feColorMatrix in="SourceGraphic"
+                                                type="matrix"
+                                                values="1 0 0 0 0
+                                                        0 1 0 0 0
+                                                        0 0 1 0 0
+                                                        0 0 0 255 -140" />
+                                    </filter>
+                                </svg>
+                            </div>
+                            <div class="my_info">
+                                <div class="pfp">
+                                    <!-- <span class="line l1"></span> -->
+                                    <img src="./image/my_pfp.gif" alt=""/>
+                                    <!-- <span class="line l2"></span> -->
+                                </div>
+                                <div class="my_info_all">
+                                    <ul>
+                                        <li class="info profile">
+                                            <h3>PROFILE</h3>
+                                            <ul>
+                                                <li>
+                                                    <p class="tit">Name</p>
+                                                    <p>사영애</p>
+                                                </li>
+                                                <li>
+                                                    <p class="tit">Birth</p>
+                                                    <p>1993.03.05</p>
+                                                </li>
+                                                <li>
+                                                    <p class="tit">Phone</p>
+                                                    <p>010-8442-3277</p>
+                                                </li>
+                                                <li>
+                                                    <p class="tit">Mail</p>
+                                                    <p>leehso0305@naver.com</p>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="info skills">
+                                            <h3>SKILLS</h3>
+                                            <ul>
+                                                <li>
+                                                    <p>Photoshop</p>
+                                                    <p class="level">
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="empty"></span>
+                                                        <span class="empty"></span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>Illustrator</p>
+                                                    <p class="level">
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="empty"></span>
+                                                        <span class="empty"></span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>HTML CSS</p>
+                                                    <p class="level">
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="empty"></span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>jQuery</p>
+                                                    <p class="level">
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="empty"></span>
+                                                        <span class="empty"></span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>Javascript</p>
+                                                    <p class="level">
+                                                        <span class="fill"></span>
+                                                        <span class="fill"></span>
+                                                        <span class="empty"></span>
+                                                        <span class="empty"></span>
+                                                        <span class="empty"></span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>python</p>
+                                                    <p class="level">
+                                                        <span class="fill"></span>
+                                                        <span class="empty"></span>
+                                                        <span class="empty"></span>
+                                                        <span class="empty"></span>
+                                                        <span class="empty"></span>
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="scroll_down">
+                                <div>
+                                    <p class="mouse">
+                                        <span></span>
+                                    </p>
+                                    <p class="txt">
+                                        scroll down
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- work project -->
+                    <div class="section workPjct">
+                        <h2 class="blind">work project</h2>
+                        <div class="inner">
+                            <div class="content">                                
+                                <div class="content_inner">
+                                    <div class="title_all">
+                                        <p class="slide_num">01</p>
+                                        <h3>충청남도 청년</h3>
+                                        <p class="sub_tit">충청남도 청년 정책 안내 페이지 구축</p>
+                                        <div class="desc">
+                                            <p>메인, 서브</p>
+                                            <p>100% 참여</p>
+                                        </div>
+                                        <a href="../chnYouth/index.html" class="viewMore">viewmore</a>
+                                    </div>
+                                    <div class="pc_img">
+                                        <img src="./image/myWork_01.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- // work project -->
+                    <!-- 배달의민족 -->
+                    <div class="section web_publishing web1">
+                        <h2 class="blind">clone coding</h2>
+                        <div class="inner">
+                            <div class="content">
+                                <div class="mockup">
+                                    <div class="pc_img">
+                                        <img src="./image/baemin.PNG" alt="">
+                                    </div>
+                                    <div class="dev pc">
+                                    </div>
+                                </div>
+                                <div class="desc_my_wep">
+                                    <div class="title_all">
+                                        <h3>배달의민족</h3>
+                                        <p class="sub_tit">대한민국 배달 주문 서비스 브랜드</p>
+                                    </div>
+                                    <ul class="desc_all">
+                                        <li>
+                                            <p>TYPE</p>
+                                            <p>pc Web</p>
+                                        </li>
+                                        <li>
+                                            <p>PAGE</p>
+                                            <p>Main</p>
+                                        </li>
+                                        <li>
+                                            <p>TOOL</p>
+                                            <p>HTML, CSS, JS(jQuery)</p>
+                                        </li>
+                                        <li>
+                                            <p>PROCESS</p>
+                                            <p>Slick Js, AOS, FullPage Js</p>
+                                        </li>
+                                        <li>
+                                            <p>참여도</p>
+                                            <p>100% (개인 작업)</p>
+                                        </li>
+                                    </ul>
+                                    <div class="website">
+                                        <a href="https://sayoungae.github.io/myGIT/baemin/index.html" title="">
+                                            WEBSITE
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg_circle"></div>
+                        </div>
+                    </div>
+                    <!-- 굿네이버스 -->
+                    <div class="section web_publishing web2">
+                        <h2 class="blind">web_publishing</h2>
+                        <div class="inner">
+                            <div>
+                                <div class="content">
+                                    <div class="mockup">
+                                        <div class="pc_img">
+                                            <img src="./image/goodnb.PNG" alt="">
+                                        </div>
+                                        <div class="dev pc">
+                                        </div>
+                                    </div>
+                                    <div class="desc_my_wep">
+                                        <div class="title_all">
+                                            <h3>굿네이버스</h3>
+                                            <p class="sub_tit">대한민국 대표 토종 글로벌 NGO 국내단체 굿네이버스</p>
+                                        </div>
+                                        <ul class="desc_all">
+                                            <li>
+                                                <p>TYPE</p>
+                                                <p>Responsive Web</p>
+                                            </li>
+                                            <li>
+                                                <p>PAGE</p>
+                                                <p>Main</p>
+                                            </li>
+                                            <li>
+                                                <p>TOOL</p>
+                                                <p>HTML, CSS, JS(jQuery)</p>
+                                            </li>
+                                            <li>
+                                                <p>PROCESS</p>
+                                                <p>Slick Js, AOS, FullPage Js</p>
+                                            </li>
+                                            <li>
+                                                <p>참여도</p>
+                                                <p>100% (개인 작업)</p>
+                                            </li>
+                                        </ul>
+                                        <div class="website">
+                                            <a href="https://sayoungae.github.io/myGIT/GoodNB/index.html" title="">
+                                                WEBSITE
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg_circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 남산서울타워 -->
+                    <div class="section web_publishing web3">
+                        <h2 class="blind">web_publishing</h2>
+                        <div class="inner">
+                            <div>
+                                <div class="content">
+                                    <div class="mockup">
+                                        <div class="pc_img">
+                                            <img src="./image/namsan.PNG" alt="">
+                                        </div>
+                                        <div class="dev pc">
+                                        </div>
+                                    </div>
+                                    <div class="desc_my_wep">
+                                        <div class="title_all">
+                                            <h3>남산서울타워</h3>
+                                            <p class="sub_tit">제1의 관광명소 남산서울타워</p>
+                                        </div>
+                                        <ul class="desc_all">
+                                            <li>
+                                                <p>TYPE</p>
+                                                <p>pc Web</p>
+                                            </li>
+                                            <li>
+                                                <p>PAGE</p>
+                                                <p>Main</p>
+                                            </li>
+                                            <li>
+                                                <p>TOOL</p>
+                                                <p>HTML, CSS, JS</p>
+                                            </li>
+                                            <li>
+                                                <p>PROCESS</p>
+                                                <p>AOS</p>
+                                            </li>
+                                            <li>
+                                                <p>참여도</p>
+                                                <p>100% (개인 작업)</p>
+                                            </li>
+                                        </ul>
+                                        <div class="website">
+                                            <a href="https://sayoungae.github.io/myGIT/namsan/index.html" title="">
+                                                WEBSITE
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg_circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section web_publishing web4">
+                        <h2 class="blind">web_publishing</h2>
+                        <div class="inner">
+                            <div>
+                                <div class="content">
+                                    <div class="mockup">
+                                        <div class="pc_img">
+                                            <video src="./image/screen-capture.mp4" type="video.mp4" width="560" autoplay ></video>
+                                        </div>
+                                        <div class="dev pc">
+                                        </div>
+                                    </div>
+                                    <div class="desc_my_wep">
+                                        <div class="title_all">
+                                            <h3>VOGUE Korea</h3>
+                                            <p class="sub_tit">컬렉션부터 스타일, 쇼핑, 뷰티, 라이프스타일, 셀러브리티까지 지금 가장 핫한 트렌드 소개</p>
+                                        </div>
+                                        <ul class="desc_all">
+                                            <li>
+                                                <p>TYPE</p>
+                                                <p>pc Web</p>
+                                            </li>
+                                            <li>
+                                                <p>PAGE</p>
+                                                <p>Main</p>
+                                            </li>
+                                            <li>
+                                                <p>TOOL</p>
+                                                <p>HTML, CSS, JS</p>
+                                            </li>
+                                            <li>
+                                                <p>PROCESS</p>
+                                                <p>GSAP</p>
+                                            </li>
+                                            <li>
+                                                <p>참여도</p>
+                                                <p>100% (개인 작업)</p>
+                                            </li>
+                                        </ul>
+                                        <div class="website">
+                                            <a href="https://sayoungae.github.io/myGIT/vogue/index.html" title="">
+                                                WEBSITE
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg_circle"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section person_pro" id="person_pro">
+                        <h2 class="blind">personal project</h2>
+                        <div class="inner">
+                            <h3>
+                                <span>personal</span>
+                                <span>project</span>
+                            </h3>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        <div class="img_box">
+                                            <img src="./image/weather.PNG" >
+                                        </div>
+                                        <div class="txt_box">
+                                            <h4>Weather API</h4>
+                                            <div class="website">
+                                                <a href="https://sayoungae.github.io/myGIT/weather/index.html" title="">
+                                                    WEBSITE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="img_box">
+                                            <img src="./image/cocktail.PNG"/>
+                                        </div>
+                                        <div class="txt_box">
+                                            <h4>cocktail select</h4>
+                                            <div class="website">
+                                                <a href="https://sayoungae.github.io/myGIT/cocktail/index.html" title="">
+                                                    WEBSITE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img_box">
+                                            <img src="./image/custom_cale.PNG"/>
+                                        </div>
+                                        <div class="txt_box">
+                                            <h4>Custom Calendar and TodoList</h4>
+                                            <div class="website">
+                                                <a href="https://sayoungae.github.io/myGIT/calendar/custm_cale.html" title="">
+                                                    WEBSITE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img_box">
+                                            <img src="./image/grayLevels.PNG" alt="gray levels"/>
+                                        </div>
+                                        <div class="txt_box">
+                                            <h4>Gray Levels</h4>
+                                            <div class="website">
+                                                <a href="https://sayoungae.github.io/myGIT/grayLevels/main.html" title="">
+                                                    WEBSITE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cursor"></div>
+    <div class="cursor_inner"></div>
 </body>
 </html>
