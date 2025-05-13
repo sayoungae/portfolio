@@ -12,7 +12,7 @@ body{font-family: 'Noto Sans KR', sans-serif; color:#4f4f4f;}
 .bg2{background-image: url('../image/bg1.png'), url('../image/bg1.png'); top:185px; }
 #wrap{width: 100%;}
 /* .inner{height:calc(100% - 366px);} */
-#header{width:100%; background-color:rgba(255,255,255,0.3); border-bottom:1px solid rgba(255,255,255,0.8); position:fixed; top:0; left:0; z-index:800;}
+#header{width:100%; background-color:rgba(255,255,255,0.3); border-bottom:1px solid rgba(255,255,255,0.8); position:fixed; top:0; left:0; z-index:999;}
 #header .headBox{width: 100%; display: flex; justify-content: flex-end; align-items: center; padding:0 50px;}
 #header h1{font-family: 'Stylish', sans-serif; position: absolute; left: -135px;  top: 206px;  transform: rotate(90deg);letter-spacing: 0.2em; font-size:24px; color:#fff; text-shadow: 2px 3px 0px rgba(27, 27, 27, 0.6);}
 #header .nav > ul{display: flex; justify-content: space-between; align-items: center;}
