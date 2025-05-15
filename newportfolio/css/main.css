@@ -1,0 +1,102 @@
+@import url(animation.css);
+
+.intro_content{display: flex;flex-direction: column; justify-content: space-between; }
+.intro_content .welcome_tit{width: 500px; height:80px; margin:0 auto 100px; position:relative; text-align:center; filter: url(#threshold) blur(0.6px); }
+.intro_content .welcome_tit span{display: inline-block; width:100%;  position:absolute; left:0; top:0; font-family: 'DynaPuff', cursive; font-size: 80px; font-weight:700;text-align:center; text-transform: uppercase; color:#ec9325; letter-spacing: 0.12em;}
+
+.intro_content .my_info{height:255px; display:flex; justify-content: center; align-items: center; gap:70px; }
+.intro_content .my_info .pfp{width:250px; position: relative; background-color: rgba(233,223,207,0.8); transition:all 0.3s 1.3s; }
+.intro_content .my_info .pfp::before{
+    content:'';
+    display: block;
+    position:absolute;
+    top: -45px;
+    left: -48px;
+    z-index: -1;
+    height: 140%;
+    width: 140%;
+    margin: 0 auto;
+    transform: scale(0.7);
+    filter: blur(30px);
+    background-image: linear-gradient(
+      var(--rotate)
+      , #fffbed, #f6d365 43%, #fda085);
+      opacity: 1;
+    transition: opacity .5s;
+    animation: spin 4s linear infinite;
+}
+
+.intro_content .my_info .pfp::after{
+    content:'';
+    display: block;
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+      var(--rotate)
+      ,#fffbed, #f6d365 43%, #fda085);
+    position: absolute;
+    z-index: -1;
+    top: -1%;    
+    left: -2%;
+    animation: spin 4s linear infinite;
+}
+
+
+.intro_content.on .my_info .pfp{background-color:rgba(242 236 225,0.2);}
+.intro_content .my_info .pfp .line{position:absolute; left:0; top:0; width:100%; height:100%;}
+.intro_content .my_info .pfp .line::after,
+.intro_content .my_info .pfp .line::before{display:inline-block; content:''; position:absolute; transition:all 0.3s; box-shadow: -1px 8px 21px 1px rgba(237,209,187,1);
+    -webkit-box-shadow: -1px 8px 21px 1px #edd1bb;
+    -moz-box-shadow: -1px 8px 21px 1px rgba(237,209,187,1);}
+.intro_content .my_info .pfp .l1::before{
+    width:0%; height:2px; top:0; left:0;
+    background: rgb(207,179,152);
+    transition-delay : 0.2s;
+}
+.intro_content .my_info .pfp .l1::after{
+    width:2px; height:0%; top:0; right:0;
+    background: #cfb398;
+    transition-delay : 0.6s;
+}
+.intro_content .my_info .pfp .l2::before{
+    width:0%; height:2px; bottom:0; right:0;
+    background: rgb(207,179,152);
+    transition-delay : 0.9s;
+}
+.intro_content .my_info .pfp .l2::after{
+    width:2px; height:0%; bottom:0; left:0;
+    background: rgb(207,179,152);
+    transition-delay : 1.2s;
+}
+/*  on */
+.intro_content.on .my_info .pfp .l1::before{
+    width:100%;
+}
+.intro_content.on .my_info .pfp .l1::after{
+     height:100%;
+}
+.intro_content.on .my_info .pfp .l2::before{
+    width:100%;
+}
+.intro_content.on .my_info .pfp .l2::after{
+    height:100%;
+}
+
+.intro_content .my_info_all{height:100%; padding:10px;}
+.intro_content .my_info_all > ul{height:100%; display:flex; align-items: flex-start; gap:40px;}
+.intro_content .my_info_all > ul >li >h3{margin-bottom:20px; font-size:20px;}
+.intro_content .my_info_all > ul .info >ul >li{display: flex; padding:3px 0; font-size:14px;}
+
+.intro_content .my_info_all > ul .info p:nth-child(1){font-weight: 700;}
+.intro_content .my_info_all > ul .profile p:nth-child(1){width:80px;}
+.intro_content .my_info_all > ul .info.skills p:nth-child(1){width:120px;}
+.intro_content .my_info_all > ul .info.skills .level span{display: inline-block; width:45px; height:6px; border-radius: 20px; text-align: center; margin-right:5px;}
+.intro_content .my_info_all > ul .info.skills .level span.fill{background-color:#edb470;}
+.intro_content .my_info_all > ul .info.skills .level span.empty{background-color:#ead0b1;}
+
+.scroll_down{display: flex;}
+.scroll_down > div{width:100px;  margin:180px auto 0;}
+.scroll_down > div > .mouse{width:45px; height:80px; margin: 0 auto; border:2px solid #fff; border-radius: 50px; position:relative; padding:5px; box-sizing: border-box; box-shadow: 2px 2px 3px rgba(255,255,255,0.6); overflow: hidden;}
+.scroll_down > div > .mouse >span{display: inline-block; width:10px; height:10px; border-radius: 50%; background-color:#fff; position: absolute; left:50%; transform: translateX(-50%); animation: move 2s linear infinite;}
+.scroll_down > div .txt{text-align: center; font-size:1em; padding-top:10px; color:#fff; font-weight: 700;}
