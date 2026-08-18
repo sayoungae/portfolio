@@ -1,182 +1,727 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/variables.css">
-    <link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <title>사영애 | 퍼블리싱 포트폴리오 — 공공 청년정책 플랫폼</title>
+    <style>
+        :root {
+            --ink: #182225;
+            --ink-soft: #4b585c;
+            --line: #e2e7e6;
+            --bg: #ffffff;
+            --bg-alt: #f4f7f6;
+            --teal: #0b5e59;
+            --teal-deep: #083f3c;
+            --gold: #c9922c;
+            --card-shadow: 0 1px 2px rgba(15, 30, 28, .04), 0 8px 24px rgba(15, 30, 28, .06);
+            --radius: 14px;
+        }
 
+        * {
+            box-sizing: border-box;
+        }
 
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="./js/main.js"></script>
+        html {
+            scroll-behavior: smooth;
+        }
 
+        body {
+            margin: 0;
+            font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 0;
+            background: var(--teal);
+            color: #fff;
+            padding: 10px 16px;
+            z-index: 100;
+            border-radius: 0 0 8px 0;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        header.top {
+            padding: 64px 24px 48px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            color: var(--teal);
+            background: rgba(11, 94, 89, .08);
+            padding: 5px 12px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            margin: 0 0 12px;
+            letter-spacing: -.01em;
+        }
+
+        .lede {
+            font-size: 17px;
+            color: var(--ink-soft);
+            max-width: 640px;
+            margin: 0 0 28px;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 22px;
+            font-size: 14px;
+            color: var(--ink-soft);
+            border-top: 1px solid var(--line);
+            padding-top: 20px;
+        }
+
+        .meta-row strong {
+            color: var(--ink);
+        }
+
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+
+        section.project {
+            border-top: 1px solid var(--line);
+            padding: 56px 0;
+        }
+
+        section.project:first-of-type {
+            padding-top: 12px;
+        }
+
+        .project-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .badge.full {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .badge.renewal {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .year-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--ink-soft);
+            margin-right: 8px;
+            letter-spacing: .02em;
+        }
+
+        h2.project-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 10px 0 4px;
+        }
+
+        .project-sub {
+            font-size: 14.5px;
+            color: var(--ink-soft);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            margin: 22px 0 28px;
+        }
+
+        .info-item .label {
+            font-size: 12px;
+            color: var(--ink-soft);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .info-item .value {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .desc {
+            font-size: 15.5px;
+            color: var(--ink);
+            max-width: 680px;
+            margin: 0 0 26px;
+        }
+
+        .desc+.desc {
+            margin-top: -14px;
+        }
+
+        .frame {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            background: #fff;
+        }
+
+        .frame-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: #eef1f0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #d6dbda;
+        }
+
+        .frame-url {
+            margin-left: 8px;
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 4px 10px;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .scroll-shot {
+            max-height: 560px;
+            overflow-y: auto;
+            display: block;
+        }
+
+        .scroll-shot img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .scroll-hint {
+            text-align: center;
+            font-size: 12px;
+            color: var(--ink-soft);
+            padding: 8px 0 0;
+        }
+
+        details.sitemap {
+            margin-top: 26px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        details.sitemap summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 14.5px;
+            background: var(--bg-alt);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        details.sitemap summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.sitemap summary::after {
+            content: "펼치기";
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--teal);
+        }
+
+        details.sitemap[open] summary::after {
+            content: "접기";
+        }
+
+        .sitemap-body {
+            padding: 18px 20px 22px;
+            font-size: 13.5px;
+            color: var(--ink-soft);
+        }
+
+        .sitemap-body p {
+            margin: 0 0 12px;
+        }
+
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 6px 11px;
+            font-size: 13px;
+            color: var(--ink);
+        }
+
+        .site-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .site-card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 20px 20px 18px;
+            background: #fff;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .site-card .lang-badge {
+            align-self: flex-start;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--teal);
+            background: rgba(11, 94, 89, .08);
+            padding: 3px 9px;
+            border-radius: 999px;
+        }
+
+        .lang-badge.side {
+            color: var(--gold);
+            background: rgba(201, 146, 44, .12);
+        }
+
+        .side-section {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: var(--bg-alt);
+            margin: 0 -24px;
+            padding: 56px 24px;
+        }
+
+        .side-head {
+            max-width: 680px;
+        }
+
+        .side-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 8px 0 14px;
+        }
+
+        .side-section .desc {
+            margin-bottom: 0;
+        }
+
+        .side-section .site-grid {
+            max-width: 900px;
+        }
+
+        .site-card h3 {
+            font-size: 17px;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .site-card p {
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            margin: 0;
+            flex: 1;
+        }
+
+        .site-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .site-links a {
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+        }
+
+        .site-links a.primary {
+            background: var(--teal);
+            color: #fff;
+            border-color: var(--teal);
+        }
+
+        .site-links a.primary:hover {
+            background: var(--teal-deep);
+        }
+
+        .site-links a.secondary {
+            background: #fff;
+            color: var(--ink);
+        }
+
+        .site-links a.secondary:hover {
+            background: var(--bg-alt);
+        }
+
+        footer {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+            font-size: 13px;
+            color: var(--ink-soft);
+            border-top: 1px solid var(--line);
+            padding-top: 24px;
+        }
+
+        @media (max-width:600px) {
+            header.top {
+                padding: 44px 18px 32px;
+            }
+
+            main {
+                padding: 0 18px 70px;
+            }
+
+            .scroll-shot {
+                max-height: 420px;
+            }
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--teal);
+            outline-offset: 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <div id="wrap">
-        <header id="header" class="header_wrap">
-            <div class="inner">
-                <div class="header_box">
-                    <h1>YOUNGAE Web Portfolio</h1>
-                    <nav class="nav">
-                        <ul class="nav_ul">
-                            <li><a href="#intro">INTRO</a></li>
-                            <li><a href="#secondPage">work project</a></li>
-                            <li><a href="#3rdPage">clone coding</a></li>
-                            <li><a href="#lastpage">PERSONAL PROJECT</a></li>
-                        </ul>
-                    </nav>
+
+    <a class="skip-link" href="#main">본문 바로가기</a>
+
+    <header class="top">
+        <span class="eyebrow">퍼블리싱 포트폴리오</span>
+        <h1>공공 청년정책 플랫폼, 화면 끝까지 책임지는 퍼블리싱</h1>
+        <p class="lede">
+            사영애 · 시스템사업부 대리 · 웹표준·웹접근성(WA) 기반 퍼블리싱 12M/M 참여율 100% ·
+            전체 구축형 사업과 리뉴얼형 사업을 모두 100% 퍼블리싱으로 완수한 두 사업을 소개합니다.
+        </p>
+        <div class="meta-row">
+            <span><strong>주요 스킬</strong> HTML5 · CSS3 · JavaScript · jQuery</span>
+            <span><strong>중점 역량</strong> 웹접근성(WA) 마크업</span>
+            <span><strong>담당 범위</strong> 전체 화면 퍼블리싱 100%</span>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- 온통청년 (2025) -->
+        <section class="project" aria-labelledby="proj-ontong">
+            <div class="project-head">
+                <div>
+                    <span class="year-tag">2025</span>
+                    <span class="badge renewal">메인·일부 서브 리뉴얼 · 퍼블리싱 100%</span>
+                    <h2 class="project-title" id="proj-ontong">온통청년</h2>
+                    <p class="project-sub">2025년도 청년정책통합플랫폼 유지관리 사업</p>
                 </div>
             </div>
-        </header>
-        <main id="container">
-            <section class="section" id="intro">
-                <div class="inner">
-                    <div class="intro_content">
-                        <div class="welcome_tit">
-                            <span id="txt1"></span>
-                            <span id="txt2"></span>
-                            <svg id="filters">
-                                <filter id="threshold">
-                                    <feColorMatrix in="SourceGraphic"
-                                            type="matrix"
-                                            values="1 0 0 0 0
-                                                    0 1 0 0 0
-                                                    0 0 1 0 0
-                                                    0 0 0 255 -140" />
-                                </filter>
-                            </svg>
-                        </div>
-                        <div class="my_info">
-                            <div class="pfp">
-                                <!-- <span class="line l1"></span> -->
-                                <img src="./image/my_pfp.gif" alt=""/>
-                                <!-- <span class="line l2"></span> -->
-                            </div>
-                            <div class="my_info_all">
-                                <ul>
-                                    <li class="info profile">
-                                        <h3>PROFILE</h3>
-                                        <ul>
-                                            <li>
-                                                <p class="tit">Name</p>
-                                                <p>사영애</p>
-                                            </li>
-                                            <li>
-                                                <p class="tit">Birth</p>
-                                                <p>1993.03.05</p>
-                                            </li>
-                                            <li>
-                                                <p class="tit">Phone</p>
-                                                <p>010-8442-3277</p>
-                                            </li>
-                                            <li>
-                                                <p class="tit">Mail</p>
-                                                <p>leehso0305@naver.com</p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="info skills">
-                                        <h3>SKILLS</h3>
-                                        <ul>
-                                            <li>
-                                                <p>Photoshop</p>
-                                                <p class="level">
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="empty"></span>
-                                                    <span class="empty"></span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p>Illustrator</p>
-                                                <p class="level">
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="empty"></span>
-                                                    <span class="empty"></span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p>HTML CSS</p>
-                                                <p class="level">
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="empty"></span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p>jQuery</p>
-                                                <p class="level">
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="empty"></span>
-                                                    <span class="empty"></span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p>Javascript</p>
-                                                <p class="level">
-                                                    <span class="fill"></span>
-                                                    <span class="fill"></span>
-                                                    <span class="empty"></span>
-                                                    <span class="empty"></span>
-                                                    <span class="empty"></span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p>python</p>
-                                                <p class="level">
-                                                    <span class="fill"></span>
-                                                    <span class="empty"></span>
-                                                    <span class="empty"></span>
-                                                    <span class="empty"></span>
-                                                    <span class="empty"></span>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                    </div>
-                    </div>
-                    <div class="scroll_down">
-                        <div>
-                            <p class="mouse">
-                                <span></span>
-                            </p>
-                            <p class="txt">
-                                scroll down
-                            </p>
-                        </div>
-                    </div>
 
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">발주처</div>
+                    <div class="value">한국고용정보원</div>
                 </div>
-            </section>
-            <section class="section" id="secondPage">
-                <div class="inner"></div>
-            </section>
-            <section class="section" id="3rdPage">
-                <div class="inner"></div>
-            </section>
-            <section class="section" id="lastpage">
-                <div class="inner"></div>
-            </section>
-        </main>
-        <footer id="footer" class="footer_wrap">
+                <div class="info-item">
+                    <div class="label">참여 기간</div>
+                    <div class="value">2025.05.30 ~ 2025.12.31</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">담당 업무</div>
+                    <div class="value">퍼블리싱 (메인·일부 서브 리뉴얼)</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">참여율</div>
+                    <div class="value">100%</div>
+                </div>
+            </div>
 
-        </footer>
-    </div>
+            <p class="desc">
+                국무조정실 청년정책조정실이 운영하는 청년정책 통합 플랫폼의 유지관리 사업으로,
+                기존 서비스 구조는 유지하면서 메인 화면과 일부 서브 화면의 UI를 새롭게 디자인 리뉴얼했습니다.
+                배너, 실시간 정책 검색 순위, 분야별 인기정책, 온통청년 유튜브·인스타그램 영역 등
+                개편 대상 화면의 퍼블리싱을 100% 담당했습니다.
+            </p>
+
+            <div class="frame">
+                <div class="frame-bar">
+                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                    <span class="frame-url">ontongyouth.go.kr</span>
+                </div>
+                <div class="scroll-shot" tabindex="0" role="group" aria-label="온통청년 메인 화면 스크린샷, 스크롤하여 전체 확인 가능">
+                    <img src="/image/youthcenter2.png"
+                        alt="온통청년 메인 화면. 상단 배너, 실시간 정책 검색 순위, 최신 소식, 분야별 인기정책, 온통청년 유튜브·인스타그램, 고민상담소 섹션으로 구성">
+                </div>
+                <p class="scroll-hint">이미지 영역을 스크롤하면 페이지 전체를 볼 수 있어요</p>
+            </div>
+        </section>
+
+        <!-- 서울시립대학교 (2024~2025) -->
+        <section class="project" aria-labelledby="proj-uos">
+            <div class="project-head">
+                <div>
+                    <span class="year-tag">2024–2025</span>
+                    <span class="badge full">홈페이지 재개발 · 퍼블리싱 100%</span>
+                    <h2 class="project-title" id="proj-uos">서울시립대학교 홈페이지 (영문) 재개발</h2>
+                    <p class="project-sub">여러 산하 사이트 중 4개 사이트 퍼블리싱 담당</p>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">발주처</div>
+                    <div class="value">서울시립대학교</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">참여 기간</div>
+                    <div class="value">2024.09.20 ~ 2025.04.03</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">담당 업무</div>
+                    <div class="value">퍼블리싱 (신규 개발)</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">참여율</div>
+                    <div class="value">100%</div>
+                </div>
+            </div>
+
+            <p class="desc">
+                서울시립대학교 산하 다수 사이트 재개발 사업 중 일반대학원 영문, 국제처 한글/영문,
+                경영대학원 4개 사이트를 담당했습니다. 메인부터 학과소개·입학·학사·학생지원·게시판까지
+                전 화면을 신규로 퍼블리싱했고, 국제처는 한/영 두 언어 버전을 동일한 구조로 병행 작업했습니다.
+            </p>
+
+            <div class="site-grid">
+                <div class="site-card">
+                    <span class="lang-badge">EN</span>
+                    <h3>일반대학원 영문</h3>
+                    <p>About UOS, Admission, 학사, 학생지원, 연구, 게시판 등 학과 소개 70여 화면 전체 퍼블리싱</p>
+                    <div class="site-links">
+                        <a class="primary" href="https://sayoungae.github.io/uospub/engraduate/main/main.html"
+                            target="_blank" rel="noopener">메인 보기</a>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <span class="lang-badge">KO</span>
+                    <h3>국제처 한글</h3>
+                    <p>국제처 소개, UOS 입학, Study at UOS(교환·여름/겨울학교), Study Abroad, 버디프로그램 등 60여 화면</p>
+                    <div class="site-links">
+                        <a class="primary" href="https://sayoungae.github.io/uospub/oia/kiice/main/main.html"
+                            target="_blank" rel="noopener">메인 보기</a>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <span class="lang-badge">EN</span>
+                    <h3>국제처 영문</h3>
+                    <p>국제처 한글 사이트와 동일 구조의 영문 버전, Study at UOS·Study Abroad 등 전 화면 병행 퍼블리싱</p>
+                    <div class="site-links">
+                        <a class="primary" href="https://sayoungae.github.io/uospub/oia/iice/main/main.html"
+                            target="_blank" rel="noopener">메인 보기</a>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <span class="lang-badge">KO</span>
+                    <h3>경영대학원</h3>
+                    <p>MBA·SEMBA 소개, Admission, 학사안내, 원우회·동문회, 스토리 등 서브 화면 퍼블리싱</p>
+                    <div class="site-links">
+                        <a class="primary" href="https://sayoungae.github.io/uospub/mba/main/main.htm" target="_blank"
+                            rel="noopener">메인 보기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 충남청년포털 (2023) -->
+        <section class="project" aria-labelledby="proj-chungnam">
+            <div class="project-head">
+                <div>
+                    <span class="year-tag">2023</span>
+                    <span class="badge full">전체 구축 · 퍼블리싱 100%</span>
+                    <h2 class="project-title" id="proj-chungnam">충남청년포털</h2>
+                    <p class="project-sub">충남 온라인 청년 플랫폼 기능 고도화 사업</p>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">발주처</div>
+                    <div class="value">충청남도</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">참여 기간</div>
+                    <div class="value">2023.08.01 ~ 2023.12.31</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">담당 업무</div>
+                    <div class="value">퍼블리싱 (전체 구축)</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">참여율</div>
+                    <div class="value">100%</div>
+                </div>
+            </div>
+
+            <p class="desc">
+                로그인·회원가입·아이디/비밀번호 찾기 등 인증 화면부터 메인, 마이페이지, 청년정책 검색,
+                청년 생활정보, 일자리·금융, 주거·복지, 영농·정착, 문화·활동, 소통과 공감, 충남청년센터,
+                공유물품 서비스까지 사이트 전 영역을 신규로 화면 설계 단계부터 함께한 전체 구축 사업입니다.
+                팝업, 상세페이지, 에러 페이지(400/500)를 포함한 전체 화면의 퍼블리싱을 100% 담당했습니다.
+            </p>
+
+            <div class="frame">
+                <div class="frame-bar">
+                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                    <span class="frame-url">chnyouth.chungnam.go.kr</span>
+                </div>
+                <div class="scroll-shot" tabindex="0" role="group" aria-label="충남청년포털 메인 화면 스크린샷, 스크롤하여 전체 확인 가능">
+                    <img src="/image/myWork_01.png"
+                        alt="충남청년포털 메인 화면. 상단 검색과 베스트 청년정책, 청남청년정책 찾기, 공지사항, 지원 가능한 사업 카드, 생애주기별정책, 청년공간, 청년 생활 고민소 섹션으로 구성">
+                </div>
+                <p class="scroll-hint">이미지 영역을 스크롤하면 페이지 전체를 볼 수 있어요</p>
+            </div>
+
+            <details class="sitemap">
+                <summary>전체 구축 범위 — 화면 목록 일부</summary>
+                <div class="sitemap-body">
+                    <p>메인 1식 외에도 회원 인증, 마이페이지, 8개 대메뉴 하위 화면을 포함해 사이트 전 영역을 퍼블리싱했습니다.</p>
+                    <div class="chip-group">
+                        <span class="chip">로그인 / 회원가입 4단계</span>
+                        <span class="chip">아이디·비밀번호 찾기</span>
+                        <span class="chip">마이페이지 전체</span>
+                        <span class="chip">청년정책 검색·상세</span>
+                        <span class="chip">청년생활 고민소</span>
+                        <span class="chip">청년 공간정보·등록</span>
+                        <span class="chip">일자리·금융</span>
+                        <span class="chip">주거·복지</span>
+                        <span class="chip">영농·정착</span>
+                        <span class="chip">문화·활동</span>
+                        <span class="chip">소통과 공감 / FAQ / 설문조사</span>
+                        <span class="chip">충남청년센터</span>
+                        <span class="chip">공유물품 서비스</span>
+                        <span class="chip">400 / 500 에러 페이지</span>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <!-- 개인 사이드 프로젝트 -->
+        <section class="side-section" aria-labelledby="proj-side">
+            <div class="side-head">
+                <span class="eyebrow">사이드 프로젝트</span>
+                <h2 class="side-title" id="proj-side">Vue.js + SCSS로 만든 SSR 클론 코딩</h2>
+                <p class="desc">
+                    실무는 정적 퍼블리싱 위주라, Vue.js와 SCSS로 서버사이드 렌더링(SSR) 구조를 직접 다뤄보고 싶어
+                    레퍼런스 서비스 2개를 화면 단위로 클론 코딩했습니다. 실제 서비스의 레이아웃과 인터랙션을
+                    분석해 컴포넌트로 쪼개고, Vue의 SSR 렌더링 방식을 적용해 구현했습니다.
+                </p>
+            </div>
+
+            <div class="site-grid">
+                <div class="site-card">
+                    <span class="lang-badge side">CLONE</span>
+                    <h3>youngvibe</h3>
+                    <p>네이버 바이브(VIBE) 투데이 페이지 클론. Vue.js · SCSS · SSR로 리스트/차트 UI 구현</p>
+                    <div class="site-links">
+                        <a class="primary" href="https://youngvibe.netlify.app/" target="_blank" rel="noopener">사이트
+                            보기</a>
+                    </div>
+                </div>
+
+                <div class="site-card">
+                    <span class="lang-badge side">CLONE</span>
+                    <h3>youngpetfriend</h3>
+                    <p>펫프렌즈(Pet Friends) 앱 메인 클론. Vue.js · SCSS · SSR로 홈 탭 UI 구현</p>
+                    <div class="site-links">
+                        <a class="primary" href="https://youngpetfriend.netlify.app/" target="_blank" rel="noopener">사이트
+                            보기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>사영애 · 시스템사업부 대리 · 퍼블리싱 12M/M · 참여율 100%</p>
+    </footer>
+
 </body>
+
 </html>
