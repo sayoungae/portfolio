@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사영애 | 퍼블리싱 포트폴리오 </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #182225;
@@ -15,8 +18,24 @@
             --teal: #0b5e59;
             --teal-deep: #083f3c;
             --gold: #c9922c;
+            --purple: #7a5fb0;
             --card-shadow: 0 1px 2px rgba(15, 30, 28, .04), 0 8px 24px rgba(15, 30, 28, .06);
             --radius: 14px;
+            --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+            --reveal-dur: .6s;
+        }
+
+        html[data-theme="dark"] {
+            --ink: #e7edec;
+            --ink-soft: #a3b3b1;
+            --line: #263433;
+            --bg: #10181a;
+            --bg-alt: #16211f;
+            --teal: #3fd6c5;
+            --teal-deep: #7fe8da;
+            --gold: #e3ac4c;
+            --purple: #a98ce0;
+            --card-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 28px rgba(0, 0, 0, .35);
         }
 
         * {
@@ -33,6 +52,7 @@
             color: var(--ink);
             background: var(--bg);
             line-height: 1.6;
+            transition: background-color .35s ease, color .35s ease;
         }
 
         a {
@@ -46,7 +66,7 @@
             background: var(--teal);
             color: #fff;
             padding: 10px 16px;
-            z-index: 100;
+            z-index: 200;
             border-radius: 0 0 8px 0;
         }
 
@@ -54,8 +74,78 @@
             left: 0;
         }
 
+        /* ---------- 스크롤 진행률 표시줄 ---------- */
+        .progress-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--line);
+            z-index: 150;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--teal), var(--purple));
+            transform-origin: left;
+            transition: width .1s linear;
+        }
+
+        .progress-readout {
+            position: fixed;
+            top: 10px;
+            right: 16px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--ink-soft);
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 3px 8px;
+            z-index: 150;
+            letter-spacing: .02em;
+            pointer-events: none;
+        }
+
+        @media (max-width:600px) {
+            .progress-readout {
+                display: none;
+            }
+        }
+
+        /* ---------- 테마 토글 ---------- */
+        .theme-toggle {
+            position: fixed;
+            top: 14px;
+            left: 16px;
+            z-index: 150;
+            font-family: var(--mono);
+            font-size: 12.5px;
+            background: var(--bg);
+            color: var(--ink);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 7px 12px;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--teal);
+        }
+
+        .theme-toggle .key {
+            color: var(--purple);
+        }
+
+        .theme-toggle .val {
+            color: var(--gold);
+        }
+
         header.top {
-            padding: 64px 24px 48px;
+            padding: 96px 24px 48px;
             max-width: 960px;
             margin: 0 auto;
         }
@@ -83,7 +173,78 @@
             font-size: 17px;
             color: var(--ink-soft);
             max-width: 640px;
+            margin: 0 0 22px;
+        }
+
+        /* ---------- 콘솔 타이핑 인트로 ---------- */
+        .console-block {
+            font-family: var(--mono);
+            font-size: 13.5px;
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 12px 16px;
             margin: 0 0 28px;
+            max-width: 640px;
+            color: var(--ink-soft);
+        }
+
+        .console-prompt {
+            color: var(--teal);
+            margin-right: 8px;
+        }
+
+        .console-caret {
+            display: inline-block;
+            width: 7px;
+            margin-left: 1px;
+            background: var(--teal);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* ---------- 기술스택 console.log ---------- */
+        .stack-console {
+            font-family: var(--mono);
+            font-size: 13px;
+            background: var(--ink);
+            color: #d7e4e2;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin: 0 0 4px;
+            overflow-x: auto;
+        }
+
+        html[data-theme="dark"] .stack-console {
+            background: #0a1213;
+            border: 1px solid var(--line);
+        }
+
+        .stack-console .fn {
+            color: #7fb8ff;
+        }
+
+        .stack-console .kw {
+            color: var(--purple, #b18cf0);
+        }
+
+        .stack-console .str {
+            color: #e3ac4c;
+        }
+
+        .stack-console .cm {
+            color: #7c8f8c;
         }
 
         .meta-row {
@@ -94,6 +255,7 @@
             color: var(--ink-soft);
             border-top: 1px solid var(--line);
             padding-top: 20px;
+            margin-top: 20px;
         }
 
         .meta-row strong {
@@ -115,6 +277,34 @@
             padding-top: 12px;
         }
 
+        /* ---------- 스크롤 리빌 ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity var(--reveal-dur) ease, transform var(--reveal-dur) ease;
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .site-grid .reveal {
+            transition-delay: calc(var(--i, 0) * 90ms);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .console-caret {
+                animation: none;
+            }
+        }
+
         .project-head {
             display: flex;
             justify-content: space-between;
@@ -133,6 +323,7 @@
             padding: 6px 12px;
             border-radius: 999px;
             white-space: nowrap;
+            font-family: var(--mono);
         }
 
         .badge.full {
@@ -152,6 +343,7 @@
             color: var(--ink-soft);
             margin-right: 8px;
             letter-spacing: .02em;
+            font-family: var(--mono);
         }
 
         h2.project-title {
@@ -181,6 +373,7 @@
             color: var(--ink-soft);
             margin-bottom: 4px;
             font-weight: 600;
+            font-family: var(--mono);
         }
 
         .info-item .value {
@@ -205,6 +398,16 @@
             overflow: hidden;
             box-shadow: var(--card-shadow);
             background: #fff;
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        html[data-theme="dark"] .frame {
+            background: var(--bg-alt);
+        }
+
+        .frame:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(15, 30, 28, .08), 0 16px 32px rgba(15, 30, 28, .1);
         }
 
         .frame-bar {
@@ -212,7 +415,7 @@
             align-items: center;
             gap: 8px;
             padding: 10px 14px;
-            background: #eef1f0;
+            background: var(--bg-alt);
             border-bottom: 1px solid var(--line);
         }
 
@@ -226,8 +429,9 @@
         .frame-url {
             margin-left: 8px;
             font-size: 12.5px;
+            font-family: var(--mono);
             color: var(--ink-soft);
-            background: #fff;
+            background: var(--bg);
             border: 1px solid var(--line);
             border-radius: 6px;
             padding: 4px 10px;
@@ -256,6 +460,7 @@
             padding: 8px 0 0;
         }
 
+        /* ---------- 코드 폴딩 details ---------- */
         details.sitemap {
             margin-top: 26px;
             border: 1px solid var(--line);
@@ -284,6 +489,7 @@
             font-size: 12.5px;
             font-weight: 600;
             color: var(--teal);
+            font-family: var(--mono);
         }
 
         details.sitemap[open] summary::after {
@@ -307,12 +513,19 @@
         }
 
         .chip {
-            background: #fff;
+            background: var(--bg);
             border: 1px solid var(--line);
             border-radius: 8px;
             padding: 6px 11px;
             font-size: 13px;
             color: var(--ink);
+            font-family: var(--mono);
+            transition: border-color .2s ease, color .2s ease;
+        }
+
+        .chip:hover {
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
         .site-grid {
@@ -326,11 +539,18 @@
             border: 1px solid var(--line);
             border-radius: var(--radius);
             padding: 20px 20px 18px;
-            background: #fff;
+            background: var(--bg);
             box-shadow: var(--card-shadow);
             display: flex;
             flex-direction: column;
             gap: 10px;
+            transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+        }
+
+        .site-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--teal);
+            box-shadow: 0 4px 10px rgba(15, 30, 28, .08), 0 18px 30px rgba(15, 30, 28, .1);
         }
 
         .site-card .lang-badge {
@@ -341,6 +561,7 @@
             background: rgba(11, 94, 89, .08);
             padding: 3px 9px;
             border-radius: 999px;
+            font-family: var(--mono);
         }
 
         .lang-badge.side {
@@ -401,6 +622,7 @@
             padding: 8px 12px;
             border-radius: 8px;
             border: 1px solid var(--line);
+            transition: background-color .2s ease, color .2s ease, border-color .2s ease;
         }
 
         .site-links a.primary {
@@ -414,12 +636,37 @@
         }
 
         .site-links a.secondary {
-            background: #fff;
+            background: var(--bg);
             color: var(--ink);
         }
 
         .site-links a.secondary:hover {
             background: var(--bg-alt);
+        }
+
+        .cert-doc {
+            max-height: 640px;
+            overflow-y: auto;
+            display: block;
+            background: var(--bg-alt);
+        }
+
+        .cert-doc img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .cert-doc img:last-child {
+            border-bottom: none;
+        }
+
+        .cert-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
         }
 
         footer {
@@ -430,11 +677,12 @@
             color: var(--ink-soft);
             border-top: 1px solid var(--line);
             padding-top: 24px;
+            font-family: var(--mono);
         }
 
         @media (max-width:600px) {
             header.top {
-                padding: 44px 18px 32px;
+                padding: 76px 18px 32px;
             }
 
             main {
@@ -443,6 +691,12 @@
 
             .scroll-shot {
                 max-height: 420px;
+            }
+
+            .theme-toggle {
+                top: auto;
+                bottom: 16px;
+                left: 16px;
             }
         }
 
@@ -463,13 +717,34 @@
 
     <a class="skip-link" href="#main">본문 바로가기</a>
 
+    <div class="progress-track" aria-hidden="true">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-readout" id="progressReadout" aria-hidden="true">L 1 / 1</div>
+
+    <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false">
+        <span class="key">theme</span>:<span class="val" id="themeVal"> "light"</span>
+    </button>
+
     <header class="top">
         <span class="eyebrow">퍼블리싱 포트폴리오</span>
-        <h1>공공 청년정책 플랫폼, 화면 끝까지 책임지는 퍼블리싱</h1>
+        <h1>웹표준과 접근성을 지키는 퍼블리싱</h1>
         <p class="lede">
             사영애 · 시스템사업부 대리 · 웹표준·웹접근성(WA) 기반 퍼블리싱 12M/M 참여율 100% ·
             전체 구축형 사업과 리뉴얼형 사업을 모두 100% 퍼블리싱으로 완수한 두 사업을 소개합니다.
         </p>
+
+        <div class="console-block" aria-hidden="true">
+            <span class="console-prompt">$</span><span id="typedText"></span><span class="console-caret" aria-hidden="true"></span>
+        </div>
+
+        <div class="stack-console">
+            <span class="cm">// 주요 스킬</span><br>
+            <span class="kw">const</span> <span class="fn">skills</span> = [<span class="str">"HTML5"</span>, <span class="str">"CSS3"</span>, <span class="str">"JavaScript"</span>, <span class="str">"jQuery"</span>];<br>
+            <span class="kw">const</span> <span class="fn">focus</span> = <span class="str">"웹접근성(WA) 마크업"</span>;<br>
+            <span class="kw">const</span> <span class="fn">scope</span> = <span class="str">"전체 화면 퍼블리싱 100%"</span>;
+        </div>
+
         <div class="meta-row">
             <span><strong>주요 스킬</strong> HTML5 · CSS3 · JavaScript · jQuery</span>
             <span><strong>중점 역량</strong> 웹접근성(WA) 마크업</span>
@@ -480,7 +755,7 @@
     <main id="main">
 
         <!-- 온통청년 (2025) -->
-        <section class="project" aria-labelledby="proj-ontong">
+        <section class="project reveal" aria-labelledby="proj-ontong">
             <div class="project-head">
                 <div>
                     <span class="year-tag">2025</span>
@@ -530,7 +805,7 @@
         </section>
 
         <!-- 서울시립대학교 (2024~2025) -->
-        <section class="project" aria-labelledby="proj-uos">
+        <section class="project reveal" aria-labelledby="proj-uos">
             <div class="project-head">
                 <div>
                     <span class="year-tag">2024–2025</span>
@@ -566,7 +841,7 @@
             </p>
 
             <div class="site-grid">
-                <div class="site-card">
+                <div class="site-card reveal" style="--i:0">
                     <span class="lang-badge">EN</span>
                     <h3>일반대학원 영문</h3>
                     <p>About UOS, Admission, 학사, 학생지원, 연구, 게시판 등 학과 소개 70여 화면 전체 퍼블리싱</p>
@@ -576,7 +851,7 @@
                     </div>
                 </div>
 
-                <div class="site-card">
+                <div class="site-card reveal" style="--i:1">
                     <span class="lang-badge">KO</span>
                     <h3>국제처 한글</h3>
                     <p>국제처 소개, UOS 입학, Study at UOS(교환·여름/겨울학교), Study Abroad, 버디프로그램 등 60여 화면</p>
@@ -586,7 +861,7 @@
                     </div>
                 </div>
 
-                <div class="site-card">
+                <div class="site-card reveal" style="--i:2">
                     <span class="lang-badge">EN</span>
                     <h3>국제처 영문</h3>
                     <p>국제처 한글 사이트와 동일 구조의 영문 버전, Study at UOS·Study Abroad 등 전 화면 병행 퍼블리싱</p>
@@ -596,7 +871,7 @@
                     </div>
                 </div>
 
-                <div class="site-card">
+                <div class="site-card reveal" style="--i:3">
                     <span class="lang-badge">KO</span>
                     <h3>경영대학원</h3>
                     <p>MBA·SEMBA 소개, Admission, 학사안내, 원우회·동문회, 스토리 등 서브 화면 퍼블리싱</p>
@@ -609,7 +884,7 @@
         </section>
 
         <!-- 충남청년포털 (2023) -->
-        <section class="project" aria-labelledby="proj-chungnam">
+        <section class="project reveal" aria-labelledby="proj-chungnam">
             <div class="project-head">
                 <div>
                     <span class="year-tag">2023</span>
@@ -682,7 +957,7 @@
         </section>
 
         <!-- 개인 사이드 프로젝트 -->
-        <section class="side-section" aria-labelledby="proj-side">
+        <section class="side-section reveal" aria-labelledby="proj-side">
             <div class="side-head">
                 <span class="eyebrow">사이드 프로젝트</span>
                 <h2 class="side-title" id="proj-side">Vue.js + SCSS로 만든 SSR 클론 코딩</h2>
@@ -694,7 +969,7 @@
             </div>
 
             <div class="site-grid">
-                <div class="site-card">
+                <div class="site-card reveal" style="--i:0">
                     <span class="lang-badge side">CLONE</span>
                     <h3>youngvibe</h3>
                     <p>네이버 바이브(VIBE) 투데이 페이지 클론. Vue.js · SCSS · SSR로 리스트/차트 UI 구현</p>
@@ -704,7 +979,7 @@
                     </div>
                 </div>
 
-                <div class="site-card">
+                <div class="site-card reveal" style="--i:1">
                     <span class="lang-badge side">CLONE</span>
                     <h3>youngpetfriend</h3>
                     <p>펫프렌즈(Pet Friends) 앱 메인 클론. Vue.js · SCSS · SSR로 홈 탭 UI 구현</p>
@@ -716,11 +991,129 @@
             </div>
         </section>
 
+        <!-- 소프트웨어 기술자 경력증명서 -->
+        <section class="project reveal" aria-labelledby="proj-cert">
+            <div class="project-head">
+                <div>
+                    <span class="badge full">한국소프트웨어산업협회 발급</span>
+                    <h2 class="project-title" id="proj-cert">소프트웨어 기술자 경력증명서</h2>
+                    <p class="project-sub">「소프트웨어 진흥법」 제24조제3항에 따라 발급된 공식 경력 증명 문서</p>
+                </div>
+            </div>
+
+            <p class="desc">
+                근무 경력과 참여 사업 이력이 발주처·소속사 기준으로 정리된 공식 증명서입니다.
+                청년 플랫폼, 지자체 홈페이지 유지보수 등 다수의 공공 사업 참여 이력이 담겨 있습니다.
+            </p>
+
+            <div class="frame">
+                <div class="frame-bar">
+                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                    <span class="frame-url">사영애_SW경력증명서.pdf</span>
+                </div>
+                <div class="cert-doc" tabindex="0" role="group" aria-label="소프트웨어 기술자 경력증명서, 스크롤하여 전체 확인 가능">
+                    <img src="/image/career-cert-1.png" alt="소프트웨어 기술자 경력증명서 1페이지. 인적사항, 근무경력, 기술경력(참여사업명·기간·발주자·직위) 표">
+                    <img src="/image/career-cert-2.png" alt="소프트웨어 기술자 경력증명서 2페이지. 발급 문구와 한국소프트웨어산업협회장 직인, 참고사항">
+                </div>
+                <p class="scroll-hint">이미지 영역을 스크롤하면 전체 문서를 볼 수 있어요</p>
+            </div>
+
+            <div class="cert-actions">
+                <a class="site-links-single primary-link" href="/사영애_SW경력증명서.pdf" target="_blank" rel="noopener"
+                    style="display:inline-block;font-size:13px;font-weight:700;text-decoration:none;padding:10px 16px;border-radius:8px;background:var(--teal);color:#fff;">PDF
+                    다운로드</a>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <p>사영애 · 시스템사업부 대리 · 퍼블리싱 12M/M · 참여율 100%</p>
     </footer>
+
+    <script>
+        (function () {
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            /* ---------- 1) 스크롤 진행률 표시줄 ---------- */
+            var progressBar = document.getElementById('progressBar');
+            var progressReadout = document.getElementById('progressReadout');
+
+            function updateProgress() {
+                var doc = document.documentElement;
+                var scrollTop = doc.scrollTop || document.body.scrollTop;
+                var scrollHeight = (doc.scrollHeight - doc.clientHeight) || 1;
+                var ratio = Math.min(Math.max(scrollTop / scrollHeight, 0), 1);
+                progressBar.style.width = (ratio * 100) + '%';
+                var totalLines = 640;
+                var currentLine = Math.max(1, Math.round(ratio * totalLines));
+                progressReadout.textContent = 'L ' + currentLine + ' / ' + totalLines;
+            }
+            document.addEventListener('scroll', updateProgress, { passive: true });
+            window.addEventListener('resize', updateProgress);
+            updateProgress();
+
+            /* ---------- 2) 다크/라이트 테마 토글 ---------- */
+            var themeToggle = document.getElementById('themeToggle');
+            var themeVal = document.getElementById('themeVal');
+            var htmlEl = document.documentElement;
+
+            function setTheme(mode) {
+                if (mode === 'dark') {
+                    htmlEl.setAttribute('data-theme', 'dark');
+                    themeVal.textContent = ' "dark"';
+                    themeToggle.setAttribute('aria-pressed', 'true');
+                } else {
+                    htmlEl.removeAttribute('data-theme');
+                    themeVal.textContent = ' "light"';
+                    themeToggle.setAttribute('aria-pressed', 'false');
+                }
+            }
+
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(prefersDark ? 'dark' : 'light');
+
+            themeToggle.addEventListener('click', function () {
+                var isDark = htmlEl.getAttribute('data-theme') === 'dark';
+                setTheme(isDark ? 'light' : 'dark');
+            });
+
+            /* ---------- 3) 콘솔 타이핑 인트로 ---------- */
+            var typedTarget = document.getElementById('typedText');
+            var typedFullText = 'publisher.build({ accessibility: true, standard: "WA" });';
+
+            if (reducedMotion) {
+                typedTarget.textContent = typedFullText;
+            } else {
+                var i = 0;
+                function typeChar() {
+                    if (i <= typedFullText.length) {
+                        typedTarget.textContent = typedFullText.slice(0, i);
+                        i++;
+                        setTimeout(typeChar, 32);
+                    }
+                }
+                typeChar();
+            }
+
+            /* ---------- 4) 스크롤 리빌 (IntersectionObserver) ---------- */
+            var revealEls = document.querySelectorAll('.reveal');
+            if ('IntersectionObserver' in window && !reducedMotion) {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+                revealEls.forEach(function (el) { io.observe(el); });
+            } else {
+                revealEls.forEach(function (el) { el.classList.add('in-view'); });
+            }
+
+        })();
+    </script>
 
 </body>
 
